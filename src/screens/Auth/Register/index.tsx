@@ -15,7 +15,8 @@ function RegisterView(): JSX.Element {
         <View style={styles.body}>
             <View style={styles.stackArea}>
                 <Image
-                    source={require('../../../../assets/img/Auth/locked.png')} />
+                    source={require('../../../../assets/img/Auth/locked.png')}
+                    style={{height:_h}} />
             </View>
             <View style={styles.stackLogin}>
                 <Text style={styles.loginText}>KAYIT</Text>
