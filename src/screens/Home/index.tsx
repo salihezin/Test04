@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Pressable, Dimensions, TextInput, StyleSheet, Image, FlatList, } from 'react-native';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const _w = Dimensions.get('window').width
 const _h = Dimensions.get('window').height
@@ -45,7 +46,7 @@ function HomeView(): JSX.Element {
     ]
 
     return (
-        <View>
+        <View style={styles.body}>
             <View style={{}}>
                 <Text>MERHABA</Text>
             </View>
@@ -79,9 +80,13 @@ function HomeView(): JSX.Element {
                                 <Text style={styles.flatNameText}> {item.name}</Text>
                             </View>
                             <View style={styles.flatCheckBox}>
-                                <View style={styles.checkBox}>
-                                    
-                                </View>
+                                <Pressable
+                                    onPress={() => console.log('tapped the paid')}>
+                                    <Icon
+                                        name={item.paid ? "verified" : "unpublished"}
+                                        size={_h / 25}
+                                        color={item.paid ? "#0762E0" : "#ED1D24"} />
+                                </Pressable>
                                 <Text>Ödendi?</Text>
                             </View>
                         </View>
@@ -91,7 +96,7 @@ function HomeView(): JSX.Element {
                     return (
                         <View
                             style={{
-                                borderBottomColor: 'black',
+                                borderBottomColor: '#1FD6F8',
                                 borderBottomWidth: StyleSheet.hairlineWidth,
                                 marginVertical: 10
                             }}>
@@ -99,6 +104,12 @@ function HomeView(): JSX.Element {
                     )
                 }}
             />
+            <Pressable>
+                <View style={styles.addButton}>
+                    <Text>Borç Ekle</Text>
+                </View>
+            </Pressable>
+
         </View>
     )
 }
@@ -107,10 +118,14 @@ export default HomeView
 
 
 const styles = StyleSheet.create({
+    body: {
+        backgroundColor: "#0762E0",
+        flex:1
+    },
     dateView: {
         width: _w / 5,
         height: _w / 8,
-        backgroundColor: "red",
+        backgroundColor: "#ED1D24",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 18,
@@ -123,7 +138,7 @@ const styles = StyleSheet.create({
     },
     summaryAmountView: {
         height: _w / 8,
-        backgroundColor: "orange",
+        backgroundColor: "#F89D1F",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 18,
@@ -133,36 +148,33 @@ const styles = StyleSheet.create({
     },
     topSummaryText: {
         color: "white",
-        fontSize: 16
+        fontSize: 20,
+        fontWeight: "800"
     },
     flatItem: {
         flexDirection: "row",
         height: _h / 10,
-        backgroundColor: "pink"
-    },
-    checkBox: {
-        height: _w / 14,
-        width: _w / 14,
-        border: 1,
-        backgroundColor: "white",
-        margin: 8
+        backgroundColor: "#F89D1F",
+        margin: 8,
     },
     flatDateView: {
-        backgroundColor: "#0d0d",
+        backgroundColor: "#0762E0",
         width: _w / 5,
         alignItems: "center",
         justifyContent: "center",
     },
     flatDateText: {
         color: "white",
-        fontSize: 16,
+        fontSize: 20,
+        fontWeight: "800"
     },
     flatAmountView: {
         flex: 1
     },
     flatAmountText: {
         color: "white",
-        fontSize: 22,
+        fontSize: 30,
+        fontWeight: "800",
         marginLeft: 8,
         padding: 8
     },
@@ -172,5 +184,14 @@ const styles = StyleSheet.create({
     flatCheckBox: {
         alignItems: "center",
         justifyContent: "center",
+        margin: 8
+    },
+    addButton: {
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 8,
+        backgroundColor: "#F89D1F",
+        height: _h / 18,
+        borderRadius: 18
     }
 })
