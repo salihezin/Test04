@@ -5,6 +5,7 @@ import { AppState } from '../../store';
 import { bindActionCreators, Dispatch } from 'redux';
 import { setUser } from '../../store/User/3_actions';
 import { connect } from 'react-redux';
+import HomeLogic from './logic';
 
 const _w = Dimensions.get('window').width
 const _h = Dimensions.get('window').height
@@ -78,6 +79,8 @@ function HomeView(props: AppProps): JSX.Element {
 
     ]
 
+    const logic = HomeLogic()
+
     console.log('props', props)
 
 
@@ -140,7 +143,8 @@ function HomeView(props: AppProps): JSX.Element {
                     )
                 }}
             />
-            <Pressable>
+            <Pressable
+            onPress={logic.goToAddCredit}>
                 <View style={styles.addButton}>
                     <Text>Borç Ekle</Text>
                 </View>

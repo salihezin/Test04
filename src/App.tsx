@@ -6,12 +6,14 @@ import { Provider } from 'react-redux';
 import configureStore from './store';
 import Register from './screens/Auth/Register';
 import Home from './screens/Home';
+import AddCredit from './screens/AddCredit';
 
 type RootStackParamList = {
     Login: undefined;
     Register: undefined;
-    Home: undefined
-  };
+    Home: undefined;
+    AddCredit: undefined;
+};
 
 const RootStack = createStackNavigator<RootStackParamList>()
 const Store = configureStore()
@@ -33,6 +35,11 @@ function App(): JSX.Element {
                     <RootStack.Screen
                         name='Home'
                         component={Home}
+                    />
+
+                    <RootStack.Screen
+                        name='AddCredit'
+                        component={AddCredit}
                     />
                 </RootStack.Navigator>
             </NavigationContainer>
