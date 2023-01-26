@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Text, View, Pressable, Dimensions, TextInput, StyleSheet, Image, } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { AppState } from '../../../store';
+import { setUser } from '../../../store/User/3_actions';
 import LoginLogic from './logic';
 
 const _w = Dimensions.get('window').width
 const _h = Dimensions.get('window').height
 
-function LoginView(): JSX.Element {
+function LoginView(props: AppProps): JSX.Element {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const logic = LoginLogic({ username, password })
@@ -15,7 +19,7 @@ function LoginView(): JSX.Element {
             <View style={styles.stackArea}>
                 <Image
                     source={require('../../../../assets/img/Auth/locked.png')}
-                    style={{height:_h}} />
+                    style={{ height: _h }} />
             </View>
             <View style={styles.stackLogin}>
                 <Text style={styles.loginText}>GİRİŞ</Text>
@@ -51,7 +55,16 @@ function LoginView(): JSX.Element {
     )
 }
 
-export default LoginView
+const mapStateToProps = (state: AppState) => ({
+    user: state.user,
+    // otherReducer: state.otherReducer,
+});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+    bindActionCreators({ setUser }, dispatch);
+type AppProps = ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps>;
+
+export default connect(mapDispatchToProps, mapDispatchToProps)(LoginView)
 
 
 const styles = StyleSheet.create({

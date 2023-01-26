@@ -1,15 +1,48 @@
-import React, { useState } from 'react';
-import { Text, View, Pressable, Dimensions, TextInput, StyleSheet, Image, FlatList, } from 'react-native';
+import { Text, View, Pressable, Dimensions, StyleSheet, FlatList } from 'react-native';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { AppState } from '../../store';
+import { bindActionCreators, Dispatch } from 'redux';
+import { setUser } from '../../store/User/3_actions';
+import { connect } from 'react-redux';
 
 const _w = Dimensions.get('window').width
 const _h = Dimensions.get('window').height
 
-function HomeView(): JSX.Element {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+function HomeView(props: AppProps): JSX.Element {
     const data = [
+        {
+            date: moment().subtract(7, "d").toString(),
+            amount: 7.585,
+            userId: "sgfdhgrsert65yerwfe",
+            paid: true,
+            name: "The Car",
+            uuid: "vf34r65ergghd"
+        },
+        {
+            date: moment().subtract(1, "d").toString(),
+            amount: 3.212,
+            userId: "sgfdhgrsert65yerwfe",
+            paid: false,
+            name: "The House",
+            uuid: "hjhöyutyrewe5yt"
+        },
+        {
+            date: moment().add(5, "d").toString(),
+            amount: 7.585,
+            userId: "sgfdhgrsert65yerwfe",
+            paid: false,
+            name: "The Car",
+            uuid: "hjkyuytrtve4543"
+        },
+        {
+            date: moment().add(11, "d").toString(),
+            amount: 3.212,
+            userId: "sgfdhgrsert65yerwfe",
+            paid: false,
+            name: "The House",
+            uuid: "132tgrgeh65w6"
+        },
         {
             date: moment().subtract(7, "d").toString(),
             amount: 7.585,
@@ -45,10 +78,13 @@ function HomeView(): JSX.Element {
 
     ]
 
+    console.log('props', props)
+
+
     return (
         <View style={styles.body}>
-            <View style={{}}>
-                <Text>MERHABA</Text>
+            <View style={styles.helloName}>
+                <Text>MERHABA {props.userDetail?.displayName}</Text>
             </View>
             <View style={styles.topTable}>
                 <View style={styles.dateView}>
@@ -114,13 +150,31 @@ function HomeView(): JSX.Element {
     )
 }
 
-export default HomeView
+const mapStateToProps = (state: AppState) => ({
+    user: state.user,
+    userDetail: state.userDetail,
+});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+    bindActionCreators({ setUser }, dispatch);
+type AppProps = ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps>;
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
 
 
 const styles = StyleSheet.create({
     body: {
         backgroundColor: "#0762E0",
-        flex:1
+        flex: 1
+    },
+    helloName: {
+        height: _w / 10,
+        backgroundColor: "#F89D1F",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 18,
+        marginVertical: 8,
+        margin: 8,
     },
     dateView: {
         width: _w / 5,

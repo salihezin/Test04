@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './screens/Auth/Login'
 import { Provider } from 'react-redux';
-import Store from './settings/store';
+import configureStore from './store';
 import Register from './screens/Auth/Register';
 import Home from './screens/Home';
 
@@ -14,6 +14,7 @@ type RootStackParamList = {
   };
 
 const RootStack = createStackNavigator<RootStackParamList>()
+const Store = configureStore()
 function App(): JSX.Element {
     return (
         <Provider store={Store}>
