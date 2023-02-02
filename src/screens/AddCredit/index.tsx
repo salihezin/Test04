@@ -4,14 +4,25 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { AppState } from '../../store';
 import { useForm, Controller } from "react-hook-form";
+import { FlatList } from 'react-native-gesture-handler';
 
 function AddCreditView(props: AppProps): JSX.Element {
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
-            firstName: '',
-            lastName: ''
+            creditName: '',
+            installment: '',
+            howManyLeft: '',
+            paymentPeriod: ['Gün', 'Hafta', 'Ay', 'Yıl'],
+            frequency: ''
         }
     })
+    const preForm = [{
+        creditName: '',
+        installment: '',
+        howManyLeft: '',
+        paymentPeriod: '',
+        frequency: ''
+    }]
     const onSubmit = handleSubmit(data => console.log(data));
     console.log('props', props)
     return (
@@ -21,21 +32,32 @@ function AddCreditView(props: AppProps): JSX.Element {
                 rules={{
                     required: true,
                 }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                    <TextInput
-                        style={{
-                            borderWidth:1,
-                            margin:8
-                        }}
-                        onBlur={onBlur}
-                        onChangeText={onChange}
-                        value={value}
-                    />
-                )}
-                name="firstName"
+                render={({ field: { onChange, onBlur, value } }) => {
+                    console.log('value', value)
+                    return (
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                margin: 8
+                            }}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value} />
+                    );
+                }}
+                name="creditName"
             />
-            {errors.firstName && <Text>This is required.</Text>}
-            <Text>SALİH</Text>
+            {errors.creditName && <Text>This is required.</Text>}
+            <FlatList
+                data={preForm} 
+                renderItem={({item}) => {
+                    return (
+                        <View>
+                            <Text>{item.creditName}</Text>
+                        </View>
+                    )
+                }}
+                />
         </View>
     )
 
