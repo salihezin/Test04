@@ -1,0 +1,1 @@
+Firebase ios configurasyonu yapılmadığı için build hataları alınıyor. Firebase consoldan ios kaydetmek lazım.

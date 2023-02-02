@@ -1220,16 +1220,18 @@ PODS:
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
+  - BoringSSL-GRPC
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Firebase
+  - Firebase/Firestore
+  - Firebase/Functions
   - FirebaseAppCheckInterop
   - FirebaseAuthInterop
   - FirebaseCore
   - FirebaseCoreExtension
   - FirebaseCoreInternal
-  - FirebaseFunctions
   - FirebaseMessagingInterop
   - Flipper (= 0.125.0)
   - Flipper-Boost-iOSX (= 1.76.0.1.11)
@@ -1254,6 +1256,7 @@ DEPENDENCIES:
   - FlipperKit/SKIOSNetworkPlugin (= 0.125.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities
+  - gRPC-Core
   - GTMSessionFetcher
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
@@ -1501,7 +1504,7 @@ SPEC CHECKSUMS:
   React-RCTText: a631564e84a227fe24bae7c04446f36faea7fcf5
   React-RCTVibration: 55c91eccdbd435d7634efbe847086944389475b0
   React-runtimeexecutor: ac80782d9d76ba2b0f709f4de0c427fe33c352dc
-  ReactCommon: 7fa51a84874559b7177b0bacb92d331a6f788912
+  ReactCommon: 20e38a9be5fe1341b5e422220877cc94034776ba
   RNCCheckbox: 38989bbd3d7d536adf24ba26c6b3e6cefe0bea6f
   RNFBApp: 9295dac8a4e8857918bcff90328b197807ee0dc1
   RNFBAuth: 751f700af31914ed7cf1ec401066f884834fe5de
@@ -1514,6 +1517,6 @@ SPEC CHECKSUMS:
   Yoga: c618b544ff8bd8865cdca602f00cbcdb92fd6d31
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 858aa87f6ff57360de41d44deefff52bc985d0be
+PODFILE CHECKSUM: e828bf1027eeb685016338096dfb574749e2ba4a
 
 COCOAPODS: 1.11.3
